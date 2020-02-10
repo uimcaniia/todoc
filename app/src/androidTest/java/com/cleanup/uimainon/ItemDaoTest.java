@@ -40,14 +40,10 @@ public class ItemDaoTest {
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
 
-    @Before//Va se charger de créer une instance de notre base de données,
-    // pour ensuite la placer dans la variable  database  déclarée en haut de notre classe
+    @Before//créer une instance de notre BDD + la place dans la variable  database directement en mémoire (pas de fichier)
     public void initDb() throws Exception {
         this.database = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
-                // pour faciliter les tests unitaires, Room nous fournit un builder
-                // appelé inMemoryDatabaseBuilder.
-                // Ce dernier permet de créer une instance de notre base de données
-                // directement en mémoire (pas de fichier)
+                // builder inMemoryDatabaseBuilder fournit par Room
                 SaveMyTripDatabase.class)
                 .allowMainThreadQueries()
                 .build();

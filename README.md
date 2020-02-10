@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Todoc
+=======
+# todoc
+>>>>>>> origin/master
 
 ----
 
