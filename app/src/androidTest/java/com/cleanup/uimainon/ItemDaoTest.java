@@ -3,6 +3,7 @@ package com.cleanup.uimainon;
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
 import android.arch.persistence.room.Room;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.runner.AndroidJUnit4;
 
 import com.cleanup.uimainon.database.SaveMyTripDatabase;
 import com.cleanup.uimainon.model.Project;
@@ -12,6 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.Date;
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@RunWith(AndroidJUnit4.class)
 public class ItemDaoTest {
 
     // FOR DATA
@@ -37,10 +40,14 @@ public class ItemDaoTest {
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
 
-    @Before//va se charger de créer une instance de notre base de données, pour ensuite la placer dans la variable  database  déclarée en haut de notre classe
+    @Before//Va se charger de créer une instance de notre base de données,
+    // pour ensuite la placer dans la variable  database  déclarée en haut de notre classe
     public void initDb() throws Exception {
-        this.database = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(), // pour faciliter les tests unitaires, Room nous fournit un builder appelé inMemoryDatabaseBuilder.
-                // Ce dernier permet de créer une instance de notre base de données directement en mémoire (pas de fichier)
+        this.database = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
+                // pour faciliter les tests unitaires, Room nous fournit un builder
+                // appelé inMemoryDatabaseBuilder.
+                // Ce dernier permet de créer une instance de notre base de données
+                // directement en mémoire (pas de fichier)
                 SaveMyTripDatabase.class)
                 .allowMainThreadQueries()
                 .build();

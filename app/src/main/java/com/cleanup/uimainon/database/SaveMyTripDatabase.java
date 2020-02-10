@@ -24,6 +24,7 @@ public abstract class SaveMyTripDatabase extends RoomDatabase {
     // grâce à son builder Room.databaseBuilder et créera un fichier qui contiendra notre base de données SQLite.
     // Si jamais cette méthode est rappelée par la suite, nous renverrons uniquement la référence
     // de notre base de données.
+
     // SINGLETON
     private static volatile SaveMyTripDatabase INSTANCE;
 
@@ -57,12 +58,6 @@ public abstract class SaveMyTripDatabase extends RoomDatabase {
             @Override
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 super.onCreate(db);
-/*                Project[] mProject = getAllProjects();
-                int sizeProject = getAllProjects().*/
-/*                new Project(1L, "Projet Tartampion", 0xFFEADAD1),
-                new Project(2L, "Projet Lucidia", 0xFFB4CDBA),
-                new Project(3L, "Projet Circus", 0xFFA3CED2),*/
-
                 ContentValues contentValuesFirst = new ContentValues();
                 contentValuesFirst.put("id", 1L);
                 contentValuesFirst.put("name", "Projet Tartampion");
@@ -80,14 +75,6 @@ public abstract class SaveMyTripDatabase extends RoomDatabase {
                 contentValuesThird.put("name", "Projet Circus");
                 contentValuesThird.put("color", 0xFFA3CED2);
                 db.insert("Project", OnConflictStrategy.IGNORE, contentValuesThird);
-
-/*                db.insert("Project", OnConflictStrategy.IGNORE, contentValues);
-                ContentValues contentValues = new ContentValues();
-                contentValues.put("id", 1);
-                contentValues.put("username", "Philippe");
-                contentValues.put("urlPicture", "https://oc-user.imgix.net/users/avatars/15175844164713_frame_523.jpg?auto=compress,format&q=80&h=100&dpr=2");
-
-                db.insert("Project", OnConflictStrategy.IGNORE, contentValues);*/
             }
         };
     }
