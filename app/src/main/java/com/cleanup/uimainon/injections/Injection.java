@@ -1,10 +1,10 @@
-package com.cleanup.todoc.injections;
+package com.cleanup.uimainon.injections;
 
 import android.content.Context;
 
-import com.cleanup.todoc.database.SaveMyTripDatabase;
-import com.cleanup.todoc.repositories.ProjectDataRepository;
-import com.cleanup.todoc.repositories.TaskDataRepository;
+import com.cleanup.uimainon.database.SaveMyTripDatabase;
+import com.cleanup.uimainon.repositories.ProjectDataRepository;
+import com.cleanup.uimainon.repositories.TaskDataRepository;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;

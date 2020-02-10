@@ -1,4 +1,4 @@
-package com.cleanup.todoc;
+package com.cleanup.uimainon;
 
 import android.support.annotation.IdRes;
 import android.support.test.espresso.PerformException;
@@ -12,22 +12,23 @@ import android.view.View;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+
 /**
  * Created by dannyroa on 5/9/15.
  */
 public class TestUtils {
 
-    public static <VH extends RecyclerView.ViewHolder> ViewAction actionOnItemViewAtPosition(int position,
-                                                                                             @IdRes
-                                                                                                     int viewId,
-                                                                                             ViewAction viewAction) {
+    public static <VH extends RecyclerView.ViewHolder> ViewAction actionOnItemViewAtPosition(int position, @IdRes int viewId, ViewAction viewAction) {
         return new ActionOnItemViewAtPositionViewAction(position, viewId, viewAction);
     }
 
     public static RecyclerViewMatcher withRecyclerView(final int recyclerViewId) {
-
         return new RecyclerViewMatcher(recyclerViewId);
     }
+
 
     private static final class ActionOnItemViewAtPositionViewAction<VH extends RecyclerView
             .ViewHolder>
@@ -103,6 +104,24 @@ public class TestUtils {
         public void perform(UiController uiController, View view) {
             RecyclerView recyclerView = (RecyclerView) view;
             recyclerView.scrollToPosition(this.position);
+        }
+    }
+
+    public static class DeleteTaskAction implements ViewAction {
+        @Override
+        public Matcher<View> getConstraints() {
+            return null;
+        }
+
+        @Override
+        public String getDescription() {
+            return "Click on specific button";
+        }
+
+        @Override
+        public void perform(UiController uiController, View view) {
+            View button = view.findViewById(R.id.img_delete);
+            button.performClick();
         }
     }
 

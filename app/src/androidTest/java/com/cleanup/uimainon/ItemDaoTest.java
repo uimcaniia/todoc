@@ -1,12 +1,12 @@
-package com.cleanup.todoc;
+package com.cleanup.uimainon;
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
 import android.arch.persistence.room.Room;
 import android.support.test.InstrumentationRegistry;
 
-import com.cleanup.todoc.database.SaveMyTripDatabase;
-import com.cleanup.todoc.model.Project;
-import com.cleanup.todoc.model.Task;
+import com.cleanup.uimainon.database.SaveMyTripDatabase;
+import com.cleanup.uimainon.model.Project;
+import com.cleanup.uimainon.model.Task;
 
 import org.junit.After;
 import org.junit.Before;

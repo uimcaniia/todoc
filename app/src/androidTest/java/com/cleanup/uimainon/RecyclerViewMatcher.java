@@ -1,4 +1,4 @@
-package com.cleanup.todoc;
+package com.cleanup.uimainon;
 
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
@@ -23,7 +23,6 @@ public class RecyclerViewMatcher {
     public Matcher<View> atPosition(final int position) {
         return atPositionOnView(position, -1);
     }
-
     public Matcher<View> atPositionOnView(final int position, final int targetViewId) {
 
         return new TypeSafeMatcher<View>() {

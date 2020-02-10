@@ -1,4 +1,4 @@
-package com.cleanup.todoc.ui;
+package com.cleanup.uimainon.ui;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -19,14 +19,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.cleanup.todoc.R;
-import com.cleanup.todoc.cleanupList.TaskViewModel;
-import com.cleanup.todoc.injections.Injection;
-import com.cleanup.todoc.injections.ViewModelFactory;
-import com.cleanup.todoc.model.Project;
-import com.cleanup.todoc.model.Task;
+import com.cleanup.uimainon.R;
+import com.cleanup.uimainon.cleanupList.TaskViewModel;
+import com.cleanup.uimainon.injections.Injection;
+import com.cleanup.uimainon.injections.ViewModelFactory;
+import com.cleanup.uimainon.model.Project;
+import com.cleanup.uimainon.model.Task;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;

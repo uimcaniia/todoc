@@ -1,4 +1,4 @@
-package com.cleanup.todoc.database.dao;
+package com.cleanup.uimainon.database.dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
@@ -6,7 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.cleanup.todoc.model.Task;
+import com.cleanup.uimainon.model.Task;
 
 import java.util.List;
 
@@ -27,4 +27,5 @@ public interface TaskDao {
 
     @Query("DELETE FROM Task WHERE id = :taskId")
     int deleteTask(long taskId);
+
 }

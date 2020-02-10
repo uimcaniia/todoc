@@ -1,13 +1,15 @@
-package com.cleanup.todoc;
+package com.cleanup.uimainon;
 
+import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.cleanup.todoc.ui.MainActivity;
+import com.cleanup.uimainon.ui.MainActivity;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +20,8 @@ import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static com.cleanup.todoc.TestUtils.withRecyclerView;
+
+import static com.cleanup.uimainon.TestUtils.withRecyclerView;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -33,8 +36,20 @@ public class MainActivityInstrumentedTest {
     @Rule
     public ActivityTestRule<MainActivity> rule = new ActivityTestRule<>(MainActivity.class);
 
+
+    public void cleanBddForTest(){
+        MainActivity activity = rule.getActivity();
+        RecyclerView listTasks = activity.findViewById(R.id.list_tasks);
+        RecyclerView.Adapter adapter = listTasks.getAdapter();
+        int mNbrTask = adapter.getItemCount();
+        for(int i = 0 ; i < mNbrTask ; i++){
+            onView(withId(R.id.list_tasks)).perform(RecyclerViewActions.actionOnItemAtPosition(0, new TestUtils.DeleteTaskAction()));
+        }
+    }
+
     @Test
     public void addAndRemoveTask() {
+        cleanBddForTest();
         MainActivity activity = rule.getActivity();
         TextView lblNoTask = activity.findViewById(R.id.lbl_no_task);
         RecyclerView listTasks = activity.findViewById(R.id.list_tasks);

@@ -1,4 +1,4 @@
-package com.cleanup.todoc.database;
+package com.cleanup.uimainon.database;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
@@ -9,10 +9,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.cleanup.todoc.database.dao.ProjectDao;
-import com.cleanup.todoc.database.dao.TaskDao;
-import com.cleanup.todoc.model.Project;
-import com.cleanup.todoc.model.Task;
+import com.cleanup.uimainon.database.dao.ProjectDao;
+import com.cleanup.uimainon.database.dao.TaskDao;
+import com.cleanup.uimainon.model.Project;
+import com.cleanup.uimainon.model.Task;
 
 
 @Database(entities = {Task.class, Project.class}, version = 1, exportSchema = false)

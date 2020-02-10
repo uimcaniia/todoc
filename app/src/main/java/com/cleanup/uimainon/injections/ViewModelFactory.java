@@ -1,11 +1,11 @@
-package com.cleanup.todoc.injections;
+package com.cleanup.uimainon.injections;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
-import com.cleanup.todoc.cleanupList.TaskViewModel;
-import com.cleanup.todoc.repositories.ProjectDataRepository;
-import com.cleanup.todoc.repositories.TaskDataRepository;
+import com.cleanup.uimainon.cleanupList.TaskViewModel;
+import com.cleanup.uimainon.repositories.ProjectDataRepository;
+import com.cleanup.uimainon.repositories.TaskDataRepository;
 
 import java.util.concurrent.Executor;
 

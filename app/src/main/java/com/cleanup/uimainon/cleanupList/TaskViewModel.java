@@ -1,12 +1,12 @@
-package com.cleanup.todoc.cleanupList;
+package com.cleanup.uimainon.cleanupList;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.cleanup.todoc.model.Project;
-import com.cleanup.todoc.model.Task;
-import com.cleanup.todoc.repositories.ProjectDataRepository;
-import com.cleanup.todoc.repositories.TaskDataRepository;
+import com.cleanup.uimainon.model.Project;
+import com.cleanup.uimainon.model.Task;
+import com.cleanup.uimainon.repositories.ProjectDataRepository;
+import com.cleanup.uimainon.repositories.TaskDataRepository;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -70,6 +70,7 @@ public class TaskViewModel extends ViewModel {
             taskDataSource.deleteTask(taskId);
         });
     }
+
     public void updateTask(Task task){
         executor.execute(()->{
             taskDataSource.updateTask(task);

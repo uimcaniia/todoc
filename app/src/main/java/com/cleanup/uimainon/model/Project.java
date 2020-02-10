@@ -1,4 +1,4 @@
-package com.cleanup.todoc.model;
+package com.cleanup.uimainon.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
@@ -49,8 +49,6 @@ public class Project {
                 new Project(3L, "Projet Circus", 0xFFA3CED2),
         };
     }
-
-
 
     /**
      * Returns the project with the given unique identifier, or null if no project with that

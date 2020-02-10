@@ -1,9 +1,9 @@
-package com.cleanup.todoc.repositories;
+package com.cleanup.uimainon.repositories;
 
 import android.arch.lifecycle.LiveData;
 
-import com.cleanup.todoc.database.dao.TaskDao;
-import com.cleanup.todoc.model.Task;
+import com.cleanup.uimainon.database.dao.TaskDao;
+import com.cleanup.uimainon.model.Task;
 
 import java.util.List;
 
@@ -31,4 +31,7 @@ public class TaskDataRepository {
 
     // --- UPDATE ---
     public void updateTask(Task task){ taskDao.updateTask(task); }
+
+    public void deleteAllTask() {
+    }
 }
