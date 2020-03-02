@@ -32,6 +32,4 @@ public class TaskDataRepository {
     // --- UPDATE ---
     public void updateTask(Task task){ taskDao.updateTask(task); }
 
-    public void deleteAllTask() {
-    }
 }

@@ -40,7 +40,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements TasksAdapter.DeleteTaskListener {
     /** List of all projects available in the application */
     private final Project[] allProjects = Project.getAllProjects();
-   // private List<Project> allProjects = new ArrayList<>();
 
     /** List of all current tasks of the application */
     @NonNull
@@ -87,11 +86,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.configureViewModel(); // configure viewModel
-        //this.getAllProject();
         this.getAllTask();
-        //allProjects = taskViewModel.getAllProject();
-        //System.out.println("activity "+tasks);
-        //adapter = new TasksAdapter(tasks, allProjects, this);
 
         setContentView(R.layout.activity_main);
 
@@ -101,12 +96,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         listTasks.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         listTasks.setAdapter(adapter);
 
-        findViewById(R.id.fab_add_task).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showAddTaskDialog();
-            }
-        });
+        findViewById(R.id.fab_add_task).setOnClickListener(view -> showAddTaskDialog());
     }
 
     private void configureViewModel(){
@@ -115,24 +105,12 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         this.taskViewModel.init(PROJECT_ID);
     }
 
-    // 3 - Get all project
-/*    private void getAllProject(){
-        this.taskViewModel.getAllProject().observe(this, new Observer<List<Project>>() {
-            @Override
-            public void onChanged(@Nullable List<Project> projects) {
-               allProjects = projects;
-            }
-        });
-    }*/
-    // 3 - Get all task
+
     private void getAllTask(){
-        this.taskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
-            @Override
-            public void onChanged(@Nullable List<Task> task) {
-                assert task != null;
-               tasks = task;
-                updateTasks(tasks);
-            }
+        this.taskViewModel.getAllTasks().observe(this, task -> {
+            assert task != null;
+            tasks = task;
+            updateTasks(tasks);
         });
     }
 
