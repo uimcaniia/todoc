@@ -24,7 +24,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
     /** The list of tasks the adapter deals with */
     @NonNull
     private List<Task> tasks;
-/*    @NonNull
+/*  @NonNull
     private List<Project> projects;*/
 
     /** The listener for when a task needs to be deleted */
@@ -66,9 +66,8 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
         return tasks.size();
     }
 
-    /**
-     * Listener for deleting tasks
-     */
+
+    /** Listener for deleting tasks */
     public interface DeleteTaskListener {
         /**
          * Called when a task needs to be deleted.

@@ -28,22 +28,19 @@ public class ItemDaoTest {
     private SaveMyTripDatabase database;
 
     // DATA SET FOR TEST
-    //Avant de créer un test, nous déclarons et instancions un jeu de données statique
-    // que nous serons susceptibles de réutiliser dans nos différents tests
+    //jeu de données statique utilisé dans nos différents tests
     private static long PROJECT_ID = 1L;
     private static Project PROJECT_DEMO = new Project(PROJECT_ID, "Philippe", 0xFFA3CED2);
-    private static Task NEW_TASK_VITRE = new Task(1L, "Laver les vitres", new Date().getTime());
-    private static Task NEW_TASK_SOL = new Task( 1L,"Laver le sol", new Date().getTime());
-    private static Task NEW_TASK_CHAMBRE = new Task( 1L,"Laver les chambres", new Date().getTime());
+    private static Task NEW_TASK_VITRE = new Task(PROJECT_ID, "Laver les vitres", new Date().getTime());
+    private static Task NEW_TASK_SOL = new Task( PROJECT_ID,"Laver le sol", new Date().getTime());
+    private static Task NEW_TASK_CHAMBRE = new Task( PROJECT_ID,"Laver les chambres", new Date().getTime());
 
     @Rule //permet de forcer l'exécution de chaque test de manière synchrone (donc sans les déporter dans un thread en background).
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
-
-    @Before//créer une instance de notre BDD + la place dans la variable  database directement en mémoire (pas de fichier)
+    @Before//créer une instance de notre BDD + la place dans la variable database directement en mémoire (pas de fichier)
     public void initDb() throws Exception {
-        this.database = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
-                // builder inMemoryDatabaseBuilder fournit par Room
+        this.database = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(), // builder inMemoryDatabaseBuilder fournit par Room
                 SaveMyTripDatabase.class)
                 .allowMainThreadQueries()
                 .build();
@@ -65,33 +62,28 @@ public class ItemDaoTest {
 
     @Test //Si il n'y a aucune taches, la bdd est vide
     public void getTaskWhenNoTaskInserted() throws InterruptedException {
-        // TEST
         List<Task> items = LiveDataTestUtil.getValue(this.database.taskDao().getTask(PROJECT_ID));
         assertTrue(items.isEmpty());
     }
 
     @Test // insert et récupère la tache
     public void insertAndGetTask() throws InterruptedException {
-        // BEFORE : Adding demo user & demo items
         this.database.projectDao().createProject(PROJECT_DEMO);
         this.database.taskDao().insertTask(NEW_TASK_VITRE);
         this.database.taskDao().insertTask(NEW_TASK_SOL);
         this.database.taskDao().insertTask(NEW_TASK_CHAMBRE);
-
         // TEST
         List<Task> items = LiveDataTestUtil.getValue(this.database.taskDao().getTask(PROJECT_ID));
-        assertTrue(items.size() == 3);
+        assertEquals(3, items.size());
     }
 
     @Test // insert et modifie une tache en bdd
     public void insertAndUpdateItem() throws InterruptedException {
-        // BEFORE : Adding demo user & demo items. Next, update item added & re-save it
         this.database.projectDao().createProject(PROJECT_DEMO);
         this.database.taskDao().insertTask(NEW_TASK_VITRE);
         Task taskAdded = LiveDataTestUtil.getValue(this.database.taskDao().getTask(PROJECT_ID)).get(0);
         taskAdded.setName("Laver le plancher");
         this.database.taskDao().updateTask(taskAdded);
-
         //TEST
         List<Task> items = LiveDataTestUtil.getValue(this.database.taskDao().getTask(PROJECT_ID));
         assertEquals(1, items.size());
@@ -100,12 +92,10 @@ public class ItemDaoTest {
 
     @Test // insert et supprime une tache
     public void insertAndDeleteItem() throws InterruptedException {
-        // BEFORE : Adding demo user & demo item. Next, get the item added & delete it.
         this.database.projectDao().createProject(PROJECT_DEMO);
         this.database.taskDao().insertTask(NEW_TASK_VITRE);
         Task itemAdded = LiveDataTestUtil.getValue(this.database.taskDao().getTask(PROJECT_ID)).get(0);
         this.database.taskDao().deleteTask(itemAdded.getId());
-
         //TEST
         List<Task> items = LiveDataTestUtil.getValue(this.database.taskDao().getTask(PROJECT_ID));
         assertTrue(items.isEmpty());

@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
  * <p>Models for project in which tasks are included.</p>
  * @author Gaëtan HERFRAY
  */
-@Entity // définit qye c'est une table
+@Entity // définit que c'est une table
 public class Project {
 
     /** The unique identifier of the project */

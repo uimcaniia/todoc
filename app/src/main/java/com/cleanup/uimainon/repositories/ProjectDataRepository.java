@@ -1,25 +1,15 @@
 package com.cleanup.uimainon.repositories;
 
-import android.arch.lifecycle.LiveData;
 
 import com.cleanup.uimainon.database.dao.ProjectDao;
-import com.cleanup.uimainon.model.Project;
 
-import java.util.List;
 
+// le but du repository est d'isoler la source DAO du viewModel afin que ce dernier ne manipule pas directement la source de donnée
 public class ProjectDataRepository {
 
     private final ProjectDao projectDao;
 
     public ProjectDataRepository(ProjectDao projectDao) {
         this.projectDao = projectDao;
-    }
-
-    // --- GET PROJECT ---
-    public LiveData<Project> getProject(long projectId) {
-        return this.projectDao.getProject(projectId);
-    }
-    public LiveData<List<Project>> getAllProject() {
-        return this.projectDao.getAllProject();
     }
 }

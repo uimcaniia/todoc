@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     private TextView lblNoTasks;
 
     private TaskViewModel taskViewModel;
-    private static int PROJECT_ID = 1;
+   // private static int PROJECT_ID = 1;
 
 
 
@@ -89,23 +89,20 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         this.getAllTask();
 
         setContentView(R.layout.activity_main);
-
         listTasks = findViewById(R.id.list_tasks);
         lblNoTasks = findViewById(R.id.lbl_no_task);
-
         listTasks.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         listTasks.setAdapter(adapter);
-
         findViewById(R.id.fab_add_task).setOnClickListener(view -> showAddTaskDialog());
     }
 
     private void configureViewModel(){
         ViewModelFactory mViewModelFactory = Injection.provideViewModelFactory(this);
         this.taskViewModel = ViewModelProviders.of(this, mViewModelFactory).get(TaskViewModel.class);
-        this.taskViewModel.init(PROJECT_ID);
+       // this.taskViewModel.init(PROJECT_ID); // récupère le project et le stocke dans le view model
     }
 
-
+// appelle la méthode public getAllTasks du viewModel afin d'observer son résultat si il change en BDD (avec observe).
     private void getAllTask(){
         this.taskViewModel.getAllTasks().observe(this, task -> {
             assert task != null;
@@ -113,8 +110,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             updateTasks(tasks);
         });
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -125,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.filter_alphabetical) {
             sortMethod = SortMethod.ALPHABETICAL;
         } else if (id == R.id.filter_alphabetical_inverted) {
@@ -135,12 +129,9 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         } else if (id == R.id.filter_recent_first) {
             sortMethod = SortMethod.RECENT_FIRST;
         }
-
         updateTasks(this.tasks);
-
         return super.onOptionsItemSelected(item);
     }
-
 
 
     /**
@@ -181,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                 dialogInterface.dismiss();
             }
         }
-        // If dialog is aloready closed
+        // If dialog is already closed
         else {
             dialogInterface.dismiss();
         }
@@ -190,12 +181,9 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     /** Shows the Dialog for adding a Task */
     private void showAddTaskDialog() {
         final AlertDialog dialog = getAddTaskDialog();
-
         dialog.show();
-
         dialogEditText = dialog.findViewById(R.id.txt_task_name);
         dialogSpinner = dialog.findViewById(R.id.project_spinner);
-
         populateDialogSpinner();
     }
 
@@ -230,7 +218,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                 case OLD_FIRST:
                     Collections.sort(tasks, new Task.TaskOldComparator());
                     break;
-
             }
             adapter.updateTasks(tasks);
         }
@@ -262,7 +249,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                 dialog = null;
             }
         });
-
         dialog = alertBuilder.create();
         // This instead of listener to positive button in order to avoid automatic dismiss
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {

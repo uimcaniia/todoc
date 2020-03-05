@@ -13,6 +13,7 @@ import java.util.List;
 @Dao
 public interface TaskDao {
 
+    //pour les test
     @Query("SELECT * FROM Task WHERE projectId = :projectId")
     LiveData<List<Task>> getTask(long projectId);
 
@@ -22,7 +23,7 @@ public interface TaskDao {
     @Insert
     long insertTask(Task task);
 
-    @Update
+    @Update //pour les test
     int updateTask(Task task);
 
     @Query("DELETE FROM Task WHERE id = :taskId")

@@ -1,9 +1,7 @@
 package com.cleanup.uimainon;
 
-import com.cleanup.uimainon.model.Project;
 import com.cleanup.uimainon.model.Task;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -11,8 +9,6 @@ import org.junit.runners.JUnit4;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
