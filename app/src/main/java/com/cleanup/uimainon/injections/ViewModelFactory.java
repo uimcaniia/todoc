@@ -11,6 +11,7 @@ import java.util.concurrent.Executor;
 
 // l'interface ViewModelProvider.Factory créée par Google, et qui sera utilisée par la suite pour déclarer notre ViewModel dans notre activité.
 // Nous lui définissons ici un constructeur contenant les objets dont nous avons besoins pour instancier correctement notre classe TaskViewModel.
+//pattern permettant de déléguer et de regrouper la création d'une classe à une autre
 public class ViewModelFactory implements ViewModelProvider.Factory{
 
     private final TaskDataRepository taskDataSource;
