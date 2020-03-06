@@ -196,6 +196,12 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         this.taskViewModel.createTask(task);
         updateTasks(tasks);
     }
+    @Override
+    public void onDeleteTask(Task task) {
+        tasks.remove(task);
+        this.taskViewModel.deleteTask(task.getId());
+        updateTasks(tasks);
+    }
 
     /** Updates the list of tasks in the UI */
     private void updateTasks(List<Task> tasks) {
@@ -223,12 +229,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         }
     }
 
-    @Override
-    public void onDeleteTask(Task task) {
-        tasks.remove(task);
-        this.taskViewModel.deleteTask(task.getId());
-        updateTasks(tasks);
-    }
+
 
     /**
      * Returns the dialog allowing the user to create a new task
