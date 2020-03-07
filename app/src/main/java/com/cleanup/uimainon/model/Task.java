@@ -15,7 +15,8 @@ import java.util.Comparator;
  */
 @Entity(foreignKeys = @ForeignKey(entity = Project.class,
         parentColumns = "id", // valeur de la colonne ID de la table Project
-        childColumns = "projectId")) // colonne de la table Task qui aura cette valeur pour clé étrangère
+        childColumns = "projectId")) // colonne de la table Task qui aura cette valeur pour clé étrangère*/
+
 public class Task {
 
     /** The unique identifier of the task */
